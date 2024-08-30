@@ -1,0 +1,169 @@
+CREATE DATABASE college1;
+use college1;
+create table student1 (
+id int primary key,
+name varchar(100),
+age int not null
+);
+insert into student1 values(1,"S",23);
+insert into student1 values(2,"SH",25);
+select *from student1;
+show databases;
+show tables;
+alter table student1 add column dept_id int;
+alter table student1 add column course_id int;
+alter table student1 add column cose_id int not null default 20;
+alter table student1 drop column cose_id ;
+alter table student1 drop column dept_id ;
+alter table student1 modify age varchar(4);
+alter table student1 change age stu_age int;
+insert into student1 (id,name,stu_age) values (6,"Ss",1000);
+alter table student1 rename to stu;
+truncate table student1;
+
+create table course (
+id int primary key,
+name varchar(100)
+);
+create table teacher (
+id int primary key,
+name varchar(100),
+dept_id int,
+foreign key (dept_id) references course(id)
+);
+
+
+create database try;
+drop database try;
+drop database if exists try2;
+create database try2;
+create database if not exists college;
+use college;
+create table student(
+  rollno int primary key,
+  name varchar(58),
+  age int not null
+);
+insert into student values(1,"Sumi",23);
+insert into student values(2,"Rumi",24);
+select * from student;
+insert into student
+(rollno,name,age)
+values
+(3,"S",22),
+(4,"K",19);
+
+
+create database xyz;
+use xyz;
+create table employee_info(
+id int primary key,
+name varchar(50),
+salary int not null
+);
+insert into employee_info value(1,"S",3200);
+insert into employee_info 
+(id,name,salary)
+values
+(2,"St",5200),
+(3,"Si",7200),
+(4,"Su",9200);
+select * from employee_info;
+create table student(
+id int unique
+);
+insert into student value(100);
+insert into student value(100);
+create table student1(
+id int,
+name varchar(50),
+age int,
+city varchar (20),
+primary key(id,name)
+);
+select * from student1;
+create table emp(
+id int,
+salary int default 25000
+);
+insert into emp (id) value(101);
+select * from emp;
+
+
+create database uni;
+use uni;
+create table dept(
+id int primary key,
+name varchar(50)
+);
+insert into dept values
+(101,"Science"),
+(102,"CSE");
+select * from dept;
+update dept set id=105 where id=102;
+select * from dept;
+
+create table teacher(
+id int primary key,
+name varchar(50),
+dept_id int,
+foreign key (dept_id) references dept(id)
+on update cascade
+on delete cascade
+);
+insert into teacher values
+(101,"Sumi",101),
+(102,"Catty",102);
+select * from teacher;
+
+create database clg;
+use clg;
+create table student(
+id int primary key,
+name varchar (50),
+mark int not null,
+grade varchar(2),
+city varchar(10)
+);
+insert into student (id,name,mark,grade,city) values
+(101,"Sumi",85,"A+","Dhaka"),
+(102,"Rumi",80,"A+","BD"),
+(103,"Tumi",84,"A+","Mirpur"),
+(104,"Pumi",87,"A+","Uttara"),
+(105,"Lumi",81,"A+","Gul");
+select * from student;
+select id,name,mark from student;
+select distinct grade from student;
+select * from student where mark>83;
+select * from student where grade="A+";
+select * from student where mark>83 and grade="A+";
+select * from student where mark+25>100;
+select * from student where mark+18>100;
+select * from student where mark between 85 and 90;
+select * from student where city in ("Dhaka","Uttara","Gul");
+select * from student where city not in ("Dhaka","Uttara","Gul");
+select * from student limit 3;
+select * from student where mark>83 and grade="A+" limit 1;
+select * from student order by city ASC;
+select * from student order by city desc;
+select * from student order by mark ASC;
+select max(mark) from student;
+select min(mark) from student;
+select avg(mark) from student;
+select sum(mark) from student;
+select count(mark) from student;
+select city from student group by city;
+select city,count(id) from student group by city;
+select city,avg(mark) from student group by city order by city desc;
+select grade,count(id) from student group by grade order by grade;
+select city,count(id) from student group by city having max(mark)>84;
+SET SQL_SAFE_UPDATES = 0;
+update student set grade="O" where grade ="A+";
+select * from student;
+update student set mark=90 where id =103;
+select * from student;
+update student set mark=12 where id =104;
+delete from student where mark<33;
+select * from student;
+
+
